@@ -11,7 +11,7 @@ Dump = []
 ### BANNER OR LOGO ###
 def banner_logo():
     os.system('cls' if os.name == 'nt' else 'clear') # Coded by BIN1745
-    Console(width=50, style="bold hot_pink2").print(Panel("""[bold red]●[bold yellow] ●[bold green] ●
+    Console(width=50, style="bold hot_pink2").print(Panel("""[bold red]●[bold yello] ●[bold green] ●
 [bold red]    .-.  .-..----. .----.    .----..----.  
 [bold red]    }  \/  {| {_} }} |__}___ } |__}| {_} } 
 [bold white]    | {  } || {_} }} '_}{___}} '_} | {_} } 
