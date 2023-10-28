@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 
 import requests, time, os, re, json, random
 from rich.panel import Panel
 from rich import print
