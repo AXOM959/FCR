@@ -1,0 +1,17 @@
+#Dibuat Oleh AXOM959
+#TUTORIAL
+
+### CARA AMBIL TOKEN&COOCKIE FB
+- DOWNLOAD  PLAYSTORE [KiwiBrowser]
+- KIWIBROWSER [Cookie Dough Extension] 
+- [mbasic.facebook.com] Search init new account login
+- ...👈click[Cookie Dough]click 
+- copy cookie[python TOKEN.py] paste
+- copy this token 
+
+### CARA HACK FB
+## MASUK KE FCR
+
+        $ cd FCR
+
+        $ python F_C_R.py
