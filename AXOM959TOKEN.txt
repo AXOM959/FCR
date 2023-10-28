@@ -14,4 +14,4 @@
 
         $ cd FCR
 
-        $ python F_C_R.py
+        $ python F_C_R.py for python Run.py
