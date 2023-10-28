@@ -18,7 +18,7 @@
 # HACK FACEBOOK
 
         $ cd FCR
-        $ python FCR.py
+        $ python FBV1.py
 
 # UPDATE REPOSITORY
 
